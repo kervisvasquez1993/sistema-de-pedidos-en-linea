@@ -18,7 +18,8 @@
     <link href="{{asset('/demo/demo.css')}}" rel="stylesheet" />
 </head>
 
-<body class="login-page sidebar-collapse">
+<body class="@yield('body-class')">
+
 
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">

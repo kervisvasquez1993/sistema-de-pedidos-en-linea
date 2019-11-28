@@ -10,7 +10,7 @@
                             @csrf
                             <div class="card-header card-header-primary text-center">
                                 <h4 class="card-title">Inicio de sesión</h4>
-                                <div class="social-line">
+                                <!-- <div class="social-line">
                                     <a href="#pablo" class="btn btn-just-icon btn-link">
                                         <i class="fa fa-facebook-square"></i>
                                     </a>
@@ -20,7 +20,7 @@
                                     <a href="#pablo" class="btn btn-just-icon btn-link">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
-                                </div>
+                                </div>-->
                             </div>
                             <p class="description text-center">Ingresa tus Datos</p>
                             <div class="card-body">
@@ -49,17 +49,20 @@
                                 <div class="form-group row">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <input type="checkbox" class="" id="exampleCheck1" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
                                                 {{ __('Recordar Sesión') }}
+
                                             </label>
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
                             <div class="footer text-center">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn-primary btn-xs">
                                     {{ __('Login') }}
                                 </button>
 

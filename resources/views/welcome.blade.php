@@ -67,12 +67,12 @@
                                     <div class="col-md-6 ml-auto mr-auto">
                                         <img src="img/faces/avatar.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                                     </div>
-                                    <h4 class="card-title">{{product->name}}
+                                    <h4 class="card-title">{{ $product->name }}
                                         <br>
                                         <small class="card-description text-muted">Model</small>
                                     </h4>
                                     <div class="card-body">
-                                        <p class="card-description">{{product->description}}</p>
+                                        <p class="card-description">{{ $product->description}}</p>
                                     </div>
                                     <div class="card-footer justify-content-center">
                                         <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>

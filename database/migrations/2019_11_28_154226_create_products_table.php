@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->float('price');
             /*fk*/
             /*codigo para generar llave foranea*/
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();// admiten valoren nulos
             $table->foreign('category_id')->references('id')->on('categories');
             /*fin de llave foranea*/
             $table->timestamps();

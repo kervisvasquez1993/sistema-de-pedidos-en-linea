@@ -9,6 +9,7 @@ class testController extends Controller
     public function welcome(){
         $products = Product::all();
         return view('welcome')->with(compact('products'));
+        //compact nos crea el arreglo
     }
 }
 

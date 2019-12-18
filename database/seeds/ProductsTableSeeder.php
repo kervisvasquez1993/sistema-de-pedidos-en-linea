@@ -17,8 +17,8 @@ class ProductsTableSeeder extends Seeder
         // model factories
 
         factory(Category::class,5)->create();
-        //factory(Product::class,100)->create();
-       // factory(ProductImage::class,100)->create();
+        factory(Product::class,100)->create();
+      factory(ProductImage::class,100)->create();
             // make crea objeto mientras create crea objeto pero los guarda en la base de datos
 
 

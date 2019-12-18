@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    /*un modelo es una clase a la cual odemos hacer operaciones hacer consulta a la base de datos */
     use Notifiable;
 
     /**

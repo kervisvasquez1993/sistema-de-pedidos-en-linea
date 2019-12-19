@@ -16,3 +16,6 @@ Route::get('/', 'testController@welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/product', 'ProductController@index'); // listar
+Route::get('/admin/products/create', 'ProductController@create'); // crear
+Route::post('/admin/products', 'ProductController@store'); // guardar los datos del usuario

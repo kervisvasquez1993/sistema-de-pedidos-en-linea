@@ -30,7 +30,7 @@
                                 <td>{{$product->id}}</td>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->description}}</td>
-                                <td>{{$product->category_id}}</td>
+                                <td>{{$product->category ? $product->category->name : 'sin categoria'}}</td>
                                 <td class="text-right"> &euro; {{$product->price}}</td>
                                 <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
@@ -51,7 +51,6 @@
                             </tbody>
                         </table>
                         {{$products->links()}}
-
                     </div>
                 </div>
             </div>

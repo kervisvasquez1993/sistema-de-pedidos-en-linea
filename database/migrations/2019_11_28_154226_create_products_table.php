@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             /*fk*/
             /*codigo para generar llave foranea*/
             $table->unsignedBigInteger('category_id')->nullable();// admiten valoren nulos
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             /*fin de llave foranea*/
             $table->timestamps();
         });

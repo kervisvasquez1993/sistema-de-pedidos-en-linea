@@ -21,6 +21,8 @@
     Route::get('/products/{id}/edit', 'ProductController@edit'); //formulario de edicion
     Route::post('/products/{id}/edit', 'ProductController@update'); // actualizar
     Route::delete('/products/{id}', 'ProductController@destroy'); // eliminar
-
-});
+    Route::get('/products/{id}/images', 'ImageController@index'); //listado
+    Route::post('/products/{id}/images', 'ImageController@store'); // registro
+    Route::delete('products/{id}/images' , 'ImageController@destroy'); // eliminar images
+    });
 

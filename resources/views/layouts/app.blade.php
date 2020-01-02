@@ -34,6 +34,7 @@
             </button>
         </div>
         <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Inicio') }}</a>
@@ -49,19 +50,31 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" role="menu">
+                     @if( auth()->user()->admin)
+                      <li>
+                          <a href="{{url('/admin/products')}}">Gestionar Productos</a>
+                      </li>
+                      @endif
+                       <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Cerrar Sesión') }}
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    </div>
+                       </li>
+                    </ul>
+
+                    </ul>
+
+
                 </li>
+
             @endguest
+            </ul>
         </div>
     </div>
 </nav>

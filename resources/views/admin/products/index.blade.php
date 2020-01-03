@@ -50,6 +50,7 @@
                                         <button type="submit" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                             <i class="fa fa-times"></i>
                                         </button>
+
                                     </form>
 
                                 </td>

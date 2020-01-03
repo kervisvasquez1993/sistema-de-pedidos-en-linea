@@ -7,6 +7,7 @@ use App\ProductImage;
 use Faker\Provider\File;
 use Illuminate\Http\Request;
 
+
 class ImageController extends Controller
 {
     public function index($id){
@@ -32,9 +33,9 @@ class ImageController extends Controller
         return back();
 
     }
-    public function destroy($id){
+    public function destroy(Request $request, $id){
         //eliminar el archivo
-        $productImage = ProductImage::find($id);
+        $productImage = ProductImage::find($request->image_id);
         if (substr($productImage->image,0,4) === "http"){
             $deleted = true;
         } else{

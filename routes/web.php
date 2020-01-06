@@ -14,7 +14,10 @@
     Route::get('/', 'testController@welcome');
     Auth::routes();
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::middleware(['auth','admin'])->prefix('admin')->group(function (){
+    Route:: get('/products/{id}', 'ProductController@show'); // mostrar producto productos
+
+
+    Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(function (){
     Route::get('/products', 'ProductController@index'); // listar
     Route::get('/products/create', 'ProductController@create'); //  formulario
     Route::post('/products', 'ProductController@store'); //  registrar producto

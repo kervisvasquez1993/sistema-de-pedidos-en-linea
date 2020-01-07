@@ -1,93 +1,71 @@
-@extends('layouts.app)
-@section('title', 'bienvenido a vivery-shop')
-@section('body-class', 'landing-page sidebar-collapse')
+@extends('layouts.app')
+@section('body-class', 'profile-page sidebar-collapse')
 @section('content')
-    <div class="profile-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile">
-                        <div class="avatar">
-                            <img src="../assets/img/faces/christian.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                        </div>
-                        <div class="name">
-                            <h3 class="title">Christian Louboutin</h3>
-                            <h6>Designer</h6>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="description text-center">
-                <p>An artist of considerable range, Chet Faker &#x2014; the name taken by Melbourne-raised, Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile-tabs">
-                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                                    <i class="material-icons">camera</i> Studio
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                                    <i class="material-icons">palette</i> Work
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                                    <i class="material-icons">favorite</i> Favorite
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-content tab-space">
-                <div class="tab-pane active text-center gallery" id="studio">
-                    <div class="row">
-                        <div class="col-md-3 ml-auto">
-                            <img src="../assets/img/examples/studio-1.jpg" class="rounded">
-                            <img src="../assets/img/examples/studio-2.jpg" class="rounded">
-                        </div>
-                        <div class="col-md-3 mr-auto">
-                            <img src="../assets/img/examples/studio-5.jpg" class="rounded">
-                            <img src="../assets/img/examples/studio-4.jpg" class="rounded">
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');"></div>
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="{{$product->featured_image_url}}" alt="Circle Image" class="img-raised img-fluid">
+                            </div>
+                            <div class="name">
+                                <h3 class="title">{{$product->name}}</h3>
+                                <h6>{{$product->category->name}}</h6>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane text-center gallery" id="works">
-                    <div class="row">
-                        <div class="col-md-3 ml-auto">
-                            <img src="../assets/img/examples/olu-eletu.jpg" class="rounded">
-                            <img src="../assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                            <img src="../assets/img/examples/cynthia-del-rio.jpg" class="rounded">
-                        </div>
-                        <div class="col-md-3 mr-auto">
-                            <img src="../assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                            <img src="../assets/img/examples/clem-onojegaw.jpg" class="rounded">
-                        </div>
-                    </div>
+                <div class="description text-center">
+                    <p>{{ $product->long_description}}</p>
                 </div>
-                <div class="tab-pane text-center gallery" id="favorite">
-                    <div class="row">
-                        <div class="col-md-3 ml-auto">
-                            <img src="../assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                            <img src="../assets/img/examples/studio-3.jpg" class="rounded">
-                        </div>
-                        <div class="col-md-3 mr-auto">
-                            <img src="../assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                            <img src="../assets/img/examples/olu-eletu.jpg" class="rounded">
-                            <img src="../assets/img/examples/studio-1.jpg" class="rounded">
+                <div class="text-center">
+                <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddCart">
+                    <i class="material-icons"> add</i>
+                    Añadir al carrito
+                </button>
+                                <!-- Modal Core -->
+
+                </div>
+
+                <div class="tab-content tab-space">
+                    <div class="active text-center gallery" id="studio">
+                        <div class="row">
+                            @foreach($images as $image)
+                            <div class="col-md-3 card">
+                                <img src="{{$image->url}}">
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalAddCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Seleccione la cantidad</h4>
+                </div>
+                <form action="{{url('/cart')}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <div class="modal-body">
+                        <input type="number" name="quantity" value="1" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-info btn-simple">Añadir al carrito</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     @include('includes.footer')
 @endsection
-

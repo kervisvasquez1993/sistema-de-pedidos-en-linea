@@ -66,6 +66,12 @@
                             @csrf
                         </form>
                        </li>
+                         <li>
+                             <a class="dropdown-item" href="{{ url('/home') }}">
+                                 {{ __('Dashboard') }}
+                             </a>
+
+                         </li>
                     </ul>
 
                     </ul>

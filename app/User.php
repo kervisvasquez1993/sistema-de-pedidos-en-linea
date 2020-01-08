@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Cart;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 
 class User extends Authenticatable
@@ -30,6 +32,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function carts(){
+        return $this->hasMany(Cart::class);
+    }
+    //cart_id
+    public function getCartAttribute(){
+        $cart = $this->carts()->where('status','Active')->first();
+        if ($cart){
+            return $cart;
+        }
+        else {
+            $cart = new Cart();
+            $cart->status = 'Active';
+            $cart->user_id = $this->id;
+            $cart->save();
+            return $cart;
+        }
+    }
     /**
      * The attributes that should be cast to native types.
      *
@@ -40,21 +59,5 @@ class User extends Authenticatable
     ];
 
 
-    public function carts(){
-        return $this->hasMany(Cart::class);
-}
-    //cart_id
-    public function getCartIdAttribute(){
-        $cart = $this->carts()->where('status','Active')->first();
-        if ($cart){
-            return $cart->id;
-        }
-        else {
-            $cart = new Cart();
-            $cart->status = 'Active';
-            $cart->user_id = $this->id;
-            $cart->save();
-            return $cart->id;
-        }
-    }
+
 }

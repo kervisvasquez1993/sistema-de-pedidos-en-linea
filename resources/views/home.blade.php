@@ -10,9 +10,9 @@
 
             <div class="section text-center">
                 <h2 class="title">Dashboard</h2>
-                @if (session('status'))
+                @if (session('notification'))
                     <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+                        {{ session('notification') }}
                     </div>
                 @endif
                 <ul class="nav nav-pills nav-pills-icons" role="tablist">
@@ -32,13 +32,65 @@
                         </a>
                     </li>
                 </ul>
-                @foreach( auth()->user()->cart->details as $details )
-                    <ul>
-                        <li>
-                            {{$details}}
-                        </li>
-                    </ul>
-                @endforeach
+                <hr>
+                <p class="text-center"> Tu carrito de compra presenta {{auth()->user()->cart->details->count()}} productos</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>SubTotal</th>
+                        <th>Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach( auth()->user()->cart->details as $details )
+                        <tr>
+                            <td>
+                                <img src="{{$details->product->featured_image_url}}" height="50">
+                            </td>
+                            <td class="text-center">
+                                <a href="{{url('/products/'.$details->product->id)}}" target="_blank">{{$details->product->name}}</a>
+                            </td>
+                            <td> $ {{$details->product->price}}</td>
+                            <td>{{$details->quantity}}</td>
+                            <td> $ {{$details->quantity * $details->product->price }}</td>
+                            <td class="td-actions">
+
+
+                                <form action="{{url('/cart')}}" method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <input type="hidden" name="cart_dateil_id" value="{{$details->id}}">
+                                    <a href="{{url('/products/'.$details->product->id)}}" target="_blank" rel="tooltip" title="Ver Productos" class="btn btn-warning btn-simple btn-xs">
+                                        <i class="fa fa-info"></i>
+                                    </a>
+                                    <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+
+                                </form>
+
+                            </td>
+                        </tr>
+
+                    @endforeach
+
+
+                    </tbody>
+                </table>
+
+               <div class="text-center">
+                   <form action="{{url('/order')}}" method="post">
+                       {{csrf_field()}}
+                    <button class="btn btn-primary btn-round">
+                        <i class="material-icons">done</i>
+                            Realizar Pedido
+                        </button>
+                   </form>
+               </div>
             </div>
         </div>
     </div>

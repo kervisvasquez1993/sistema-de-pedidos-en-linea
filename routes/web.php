@@ -31,5 +31,13 @@
     Route::post('/products/{id}/images', 'ImageController@store'); // registro
     Route::delete('products/{id}/images' , 'ImageController@destroy'); // eliminar images
     Route::get('/products/{id}/images/select/{image}', 'ImageController@select'); //destacada
+
+        Route::get('/categories', 'CategoryController@index'); // LISTADO DE CATEGORIA
+        Route::get('/categories/create', 'CategoryController@create'); //  formulario FORMULARIO PARA CREAR NUEVAS CATEGORIAS
+        Route::post('/categories', 'CategoryController@store'); //  registrar REGISTRAR NUEVAS CATEGORIAS
+        Route::get('/categories/{id}/edit', 'CategoryController@edit'); //formulario de edicion DE UNA CATEGORIA
+        Route::post('/categories/{id}/edit', 'CategoryController@update'); // actualizar LA NUEVA CATEGORIA
+        Route::delete('/categories/{id}', 'CategoryController@destroy'); // eliminar UNA CATEGORIA EN PARTICULAR
+        // crear categorie controle con su namespace Admin php artisan make:controller Admin\CategoryController
     });
 

@@ -10,6 +10,15 @@
 
             <div class="section text-center">
                 <h2 class="title">Editar producto seleccionado</h2>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{url('/admin/products/'.$product->id.'/edit')}}" method="post">
                     {{csrf_field()}}
                     <div class="col-md-6">
@@ -22,6 +31,21 @@
                         <div class="form-group label-floating">
                             <label class="control-label">Precio del producto</label>
                             <input type="number" step="0.01" class="form-control" name="price" value="{{$product->price}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Categoria del producto</label>
+                            <select name="category_id"  class="form-control">
+                                <option value="0">Categorias</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}"
+                                    @if($category->id == old('$category_id', $product->category_id))
+                                       selected @endif >
+                                        {{$category->name}}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-12">

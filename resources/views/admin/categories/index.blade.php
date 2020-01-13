@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Listado de Prducto')
+@section('title', 'Listado de Categorias')
 @section('body-class', 'category-page')
 @section('content')
     <div class="page-header header-filter" data-parallax="true" style="background-image: url('img/profile_city.jpg')">
@@ -12,7 +12,9 @@
                 <h2 class="title">Listado de Categorias</h2>
                 <div class="team">
                     <div class="row">
+                        <div class="text-center">
                         <a href="{{url('/admin/categories/create')}}" class="btn btn-primary btn-round center">Nuevo Categoria</a>
+                        </div>
                         <table class="table">
                             <thead>
                             <tr>
@@ -23,9 +25,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($categories as $category)
+                            @foreach($categories as $key => $category)
                                 <tr>
-                                    <td>{{$category->id}}</td>
+                                    <td>{{($key+1)}}</td>
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->description}}</td>
                                     <td class="td-actions text-right">

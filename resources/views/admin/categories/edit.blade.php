@@ -10,33 +10,30 @@
         <div class="container">
 
             <div class="section text-center">
-                <h2 class="title">Editar producto seleccionado</h2>
-                <form action="{{url('/admin/products/'.$product->id.'/edit')}}" method="post">
+                <h2 class="title">Editar categoria seleccionado</h2>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{url('/admin/categories/'.$category->id.'/edit')}}" method="post">
                     {{csrf_field()}}
                     <div class="col-md-6">
                         <div class="form-group label-floating">
-                            <label class="control-label">Nombre del Producto</label>
-                            <input type="text" class="form-control" name="name" value="{{$product->name}}">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Precio del producto</label>
-                            <input type="number" step="0.01" class="form-control" name="price" value="{{$product->price}}">
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Descripción corta</label>
-                            <input type="text" class="form-control" name="description" value="{{$product->description}}">
+                            <label class="control-label">Nombre de la  categoria</label>
+                            <input type="text" class="form-control" name="name" value="{{old('name', $category->name)}}">
                         </div>
                     </div>
 
-                    <textarea class="form-control" placeholder="Descripcion extensa del producto" rows="5" name="long_description">
-                        {{$product->long_description}}
+                    <textarea class="form-control" placeholder="Descripción corta" rows="5" name="description">
+                        {{old('description', $category->description)}}
                     </textarea>
                     <button class="btn btn-primary">Guardar Cambio</button>
-                    <a href="{{url('/admin/products')}}" class="btn btn-default">Cancelar</a>
+                    <a href="{{url('/admin/categories')}}" class="btn btn-default">Cancelar</a>
 
 
                 </form>

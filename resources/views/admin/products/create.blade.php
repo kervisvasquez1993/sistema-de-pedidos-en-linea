@@ -24,6 +24,19 @@
                             <input type="number" class="form-control" name="price">
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Categoria del producto</label>
+                            <select name="category_id"  class="form-control">
+                                <option value="0">General</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">
+                                        {{$category->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-sm-12">
                         <div class="form-group label-floating">
                             <label class="control-label">Descripción corta</label>
@@ -31,8 +44,10 @@
                         </div>
                     </div>
 
+
                     <textarea class="form-control" placeholder="Descripcion extensa del producto" rows="5" name="long_description"></textarea>
                     <button class="btn btn-primary">Registrar producto</button>
+                    <a href="{{url('admin/products')}}" class="btn btn-default">Cancelar</a>
 
 
                 </form>

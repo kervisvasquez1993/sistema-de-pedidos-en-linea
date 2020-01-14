@@ -21,7 +21,7 @@ class Product extends Model
         if (!$featuredImage)
             $featuredImage = $this->images()->first();
 
-        if ($featuredImage){
+        else if ($featuredImage){
             return $featuredImage->url;
         }
 

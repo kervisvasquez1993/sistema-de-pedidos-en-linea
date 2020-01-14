@@ -7,8 +7,8 @@ use App\Product;
 class testController extends Controller
 {
     public function welcome(){
-        $products = Product::paginate(9);
-        return view('welcome')->with(compact('products'));
+        $categories = Category::get();
+        return view('welcome')->with(compact('categories'));
         //compact nos crea el arreglo
     }
 }

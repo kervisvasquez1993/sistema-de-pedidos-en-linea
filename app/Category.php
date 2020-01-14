@@ -16,6 +16,6 @@ class Category extends Model
     public function getFeaturedImageUrlAttribute()
     {
         $featuredProduct = $this->products()->first();
-        return $featured_image_url = $featuredProduct ;
+        return $featuredProduct->featured_image_url;
     }
 }

@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Material Kit by Creative Tim
+       @yield('title', 'vivery-shop')
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -24,7 +24,7 @@
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+            <a class="navbar-brand" href="{{url('/')}}">
                 Kervis pedidos </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -34,6 +34,7 @@
             </button>
         </div>
         <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Inicio') }}</a>
@@ -49,19 +50,41 @@
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" role="menu">
+                     @if( auth()->user()->admin)
+                      <li>
+                          <a href="{{url('/admin/products')}}">Gestionar Productos</a>
+                      </li>
+                            <li>
+                                <a href="{{url('/admin/categories')}}">Gestionar Categorias</a>
+                            </li>
+                      @endif
+                       <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Cerrar Sesión') }}
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    </div>
+                       </li>
+                         <li>
+                             <a class="dropdown-item" href="{{ url('/home') }}">
+                                 {{ __('Dashboard') }}
+                             </a>
+
+                         </li>
+
+                    </ul>
+
+                    </ul>
+
+
                 </li>
+
             @endguest
+            </ul>
         </div>
     </div>
 </nav>

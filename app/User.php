@@ -2,12 +2,16 @@
 
 namespace App;
 
+use App\Cart;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+
 class User extends Authenticatable
 {
+    /*un modelo es una clase a la cual odemos hacer operaciones hacer consulta a la base de datos */
     use Notifiable;
 
     /**
@@ -28,6 +32,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function carts(){
+        return $this->hasMany(Cart::class);
+    }
+    //cart_id
+    public function getCartAttribute(){
+        $cart = $this->carts()->where('status','Active')->first();
+        if ($cart){
+            return $cart;
+        }
+        else {
+            $cart = new Cart();
+            $cart->status = 'Active';
+            $cart->user_id = $this->id;
+            $cart->save();
+            return $cart;
+        }
+    }
     /**
      * The attributes that should be cast to native types.
      *
@@ -36,4 +57,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
 }

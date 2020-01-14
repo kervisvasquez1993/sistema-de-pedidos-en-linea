@@ -14,6 +14,7 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
@@ -21,8 +22,8 @@ class CreateProductsTable extends Migration
             $table->float('price');
             /*fk*/
             /*codigo para generar llave foranea*/
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('category_id')->nullable();// admiten valoren nulos
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             /*fin de llave foranea*/
             $table->timestamps();
         });

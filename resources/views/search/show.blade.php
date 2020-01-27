@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('body-class', 'profile-page sidebar-collapse')
+@section('body-class', 'resultado de búsqueda ')
 @section('content')
     <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');"></div>
     <div class="main main-raised">
@@ -8,12 +8,8 @@
                 <div class="row">
                     <div class="col-md-6 ml-auto mr-auto">
                         <div class="profile">
-                            <div class="avatar">
-                                <img src="{{$category->featured_image_url}}" alt="Imagen Reprensentativa de la {{$category->name}}" class="img-raised img-fluid">
-                            </div>
-
-                            <div class="name">
-                                <h3 class="title">{{$category->name}}</h3>
+                           <div class="name">
+                                <h3 class="title">Resultado de Búsqueda</h3>
 
 
                             </div>
@@ -28,7 +24,7 @@
                     </div>
                 </div>
                 <div class="description text-center">
-                    <p>{{ $category->description}}</p>
+                    <p>Se encontraron {{$products}} resultado para el termino </p>
                 </div>
                 <div class="team text-center">
                     <div class="row">

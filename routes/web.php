@@ -16,6 +16,9 @@
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/products/{id}', 'ProductController@show'); // mostrar producto productos
     Route::get('/categories/{category}', 'CategoryController@show');
+    Route ::get('/search', 'SearchController@show');
+
+
     Route::post('/cart', 'CartDetailController@store');
     Route::delete('/cart', 'CartDetailController@destroy');
     Route::post('/order', 'CartController@update');

@@ -59,21 +59,30 @@
             </div>
             <div class="section text-center">
                 <h2 class="title">categorias disponible</h2>
+                <div class="text-center">
+                <form class="form-inline" method="get" action="{{url('/search')}}">
+                    <input type="text" placeholder="¿ Que producto busca ?" class="form-control" name="query">
+                    <button class="btn btn-primary btn-just-icon" type="submit">
+                        <i class="material-icons">search</i>
+                    </button>
+                </form>
+                </div>
                 <div class="team">
                     <div class="row">
                         @foreach($categories as $category)
                         <div class="col-md-4">
                             <div class="team-player card">
-                                <div class="card card-plain">
+                                <div clas s="card card-plain">
                                     <div class="col-md-6 ml-auto mr-auto">
-                                        <img src="{{$category->featured_image_url}}" alt="" class="img-raised rounded-circle img-fluid">
+                                        <img src="{{$category->featured_image_url}}" alt="" class="img-raised
+                                        rounded-circle img-fluid">
                                     </div>
                                     <h4 class="card-title">
-                                        <a href="{{url('/categorys/'.$category->id)}}">
+                                        <a href="{{url('/categories/'.$category->id)}}">
                                         {{ $category->name }}
                                         </a>
                                         <br>
-                                        <small class="card-description text-muted">{{$category->category->name}}</small>
+                                        <small class="card-description text-muted">{{$category->category_name}}</small>
                                     </h4>
                                     <div class="card-body">
                                         <p class="card-description">{{ $category->description}}</p>
@@ -84,9 +93,7 @@
                         </div>
                        @endforeach
                     </div>
-                    <div class="text-center">
-                        {{  $categorys->links() }}
-                    </div>
+
                 </div>
             </div>
             <div class="section section-contacts">
